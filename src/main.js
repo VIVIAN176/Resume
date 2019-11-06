@@ -55,6 +55,19 @@ let str = `/* 你好，我叫张得瘦
     border: none;
     background: radial-gradient(circle, rgba(14,8,8,1) 0%, rgba(0,0,0,1) 22%, rgba(255,255,255,1) 22%, rgba(255,255,255,1) 100%); 
 }
+/* 让我们的八卦翻滚吧 */
+@keyframes  gun{ 
+    0%  { 
+        transform:  rotate(0); 
+    } 
+    100%  { 
+        transform:  rotate(360deg); 
+    } 
+} 
+
+#div1{ 
+    animation:  gun  5s  infinite  linear; 
+} 
 
 
 
