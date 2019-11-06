@@ -2,16 +2,71 @@
 let demo = document.querySelector('#html')
 // let n = 1
 let n = 0 //n从0开始，what different?咿刚好字符串下标就是从0开始的
-let str = `/* 你好，我叫张得瘦，这是我的简历
-接下来我要加样式了请看 */
-body{
-    color:#ff0000;
-}` //申明一个字符串 我用了比较好用反引号`` 
+let str = `/* 你好，我叫张得瘦
+*接下来我要展示一下我的前端功底
+*首先准备一个div
+*/
+#div1{
+   width: 200px;
+   height: 200px;
+   border: 1px solid red;
+
+}
+/*接下来我把一个div变成八卦图
+*注意看好了
+*首先把div变成一个圆
+*/
+#div1{
+    border-radius: 50%;
+    border:none;
+    -moz-box-shadow:5px 8px 17px #333333; -webkit-box-shadow:5px 8px 17px #333333; box-shadow:5px 8px 17px #333333;
+}
+/*接下来我把它变成左黑右白
+*/
+#div1{
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
+}
+/* 然后我再加两个风火轮
+*/
+#div1::before{
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    border-radius: 50%;
+    top:0;
+    left:50%;
+    transform: translateX(-50%);
+}
+#div1::after{
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    border-radius: 50%;
+    bottom:0;
+    left:50%;
+    transform: translateX(-50%);  
+}
+}
+/* 然后我再给两个风火轮增加两个内核
+*/
+#div1::before{
+    background: radial-gradient(circle, rgba(14,8,8,1) 0%, rgba(0,0,0,1) 22%, rgba(255,255,255,1) 22%, rgba(255,255,255,1) 100%);
+ border: none; 
+}
+#div1::after{
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 23%, rgba(14,8,8,1) 23%, rgba(0,0,0,1) 100%);   
+
+    border: none; 
+}
+
+
+` //申明一个字符串 我用了比较好用反引号``  而且字符串中有缩进，有空格
+let str2 = ""
 
 //如何字符串的回车在html也变成回车（默认的直接压缩为一个空格）？
 //1. str = str.replace('\n', '<br>') // 只能替换一个，第一个换行\n
-//2 .正则表达式表示所有回车，但是会出现<然后消失  以为下一步’<br‘时html解析出了这是一个标签 然后就把标签转义就看到<了 就变成了此处的换行
-str = str.replace(/\n/g, '<br>')
+//2 .正则表达式表示所有回车，但是会出现<然后消失  以为下一步’<b‘--“<br”--"<br>"时html解析出了这是一个标签 然后就把标签转义就看到<了 就变成了此处的换行
+// str = str.replace(/\n/g, '<br>') //所以正则表达式也不行
 
 
 
@@ -69,15 +124,32 @@ let css = document.querySelector('#css')
 let step = () => {
     if (n < str.length) {
         setTimeout(() => {
-            n = n + 1
+            // str[n] === '\n' ? str2 + '<br>' : str2 + str[n]
+            // str2 += str[n]; //这两行错误
+            if (str[n] === '\n') {
+                str2 += '<br>'
+            }
+            else if (str[n] === ' ') {
+                str2 += '&nbsp'
+            }
+            else {
+                str2 += str[n]
+            }
+
+            // str2 += (str[n] === '\n' ? '<br>' : str[n])
             // demo.innerHTML = n
             // demo.innerHTML = str[n]
-            demo.innerHTML = str.substring(0, n)
+            // str2 += str[n]
+            demo.innerHTML = str2
+            // demo.innerHTML = str.substring(0, n)
             // css.innerHTML = `body{color:#ff0000;}`
             css.innerHTML = str.substring(0, n)
+            // css.innerHTML = str2 //这样写会在style出现html标签包含空格回车那种
+            n = n + 1
+            // css.innerHTML = str.substring(0, n)
             // console.log(n)  console.log()调试大法
             step()
-        }, 250)
+        }, 10)
     }
     else { }
 }
