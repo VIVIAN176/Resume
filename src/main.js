@@ -19,7 +19,9 @@ let str = `/* 你好，我叫张得瘦
 #div1{
     border-radius: 50%;
     border:none;
-    -moz-box-shadow:5px 8px 17px #333333; -webkit-box-shadow:5px 8px 17px #333333; box-shadow:5px 8px 17px #333333;
+    -moz-box-shadow:5px 8px 17px #333333;
+     -webkit-box-shadow:5px 8px 17px #333333;
+      box-shadow:5px 8px 17px #333333;
 }
 /*接下来我把它变成左黑右白
 */
@@ -32,32 +34,28 @@ let str = `/* 你好，我叫张得瘦
     width: 100px;
     height: 100px;
     border: 1px solid red;
-    border-radius: 50%;
-    top:0;
+   top:0;
     left:50%;
+    background:#000;
     transform: translateX(-50%);
+    border-radius: 50%;
+    border:none;
+    background:#000;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 23%, rgba(0,0,0,1) 23%, rgba(14,8,8,1) 100%);
 }
 #div1::after{
     width: 100px;
     height: 100px;
-    border: 1px solid red;
-    border-radius: 50%;
+    border: 1px solid red;  
     bottom:0;
     left:50%;
+    background:#fff;
     transform: translateX(-50%);  
+    border-radius: 50%;
+    border: none;
+    background: radial-gradient(circle, rgba(14,8,8,1) 0%, rgba(0,0,0,1) 22%, rgba(255,255,255,1) 22%, rgba(255,255,255,1) 100%); 
 }
-}
-/* 然后我再给两个风火轮增加两个内核
-*/
-#div1::before{
-    background: radial-gradient(circle, rgba(14,8,8,1) 0%, rgba(0,0,0,1) 22%, rgba(255,255,255,1) 22%, rgba(255,255,255,1) 100%);
- border: none; 
-}
-#div1::after{
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 23%, rgba(14,8,8,1) 23%, rgba(0,0,0,1) 100%);   
 
-    border: none; 
-}
 
 
 ` //申明一个字符串 我用了比较好用反引号``  而且字符串中有缩进，有空格
@@ -146,6 +144,9 @@ let step = () => {
             css.innerHTML = str.substring(0, n)
             // css.innerHTML = str2 //这样写会在style出现html标签包含空格回车那种
             n = n + 1
+            window.scrollTo(0, 999999) //上下滚动， 那左右折行呢？
+            html.scrollTo(0, 999999) //屏幕的没有滚动条的时候怎么让内容滚动
+            // word -break: break-all 在哪添加这个属性
             // css.innerHTML = str.substring(0, n)
             // console.log(n)  console.log()调试大法
             step()
@@ -155,3 +156,4 @@ let step = () => {
 }
 //大师调用法调用函数
 step.apply(null)
+
