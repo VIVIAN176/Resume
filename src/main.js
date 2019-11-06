@@ -1,7 +1,11 @@
 
 let demo = document.querySelector('#demo')
-let n = 1
-demo.innerHTML = n
+// let n = 1
+let n = 0 //n从0开始，what different?咿刚好字符串下标就是从0开始的
+let str = `你好，我叫张得瘦，这是我的简历` //申明一个字符串 我用了比较好用反引号`` 
+// demo.innerHTML = n
+// demo.innerHTML = str[n]
+// demo.innerHTML = str.substring((0, n))
 
 
 //setTimeout()只执行一次就结束了
@@ -51,12 +55,15 @@ demo.innerHTML = n
 
 //添加条件
 let step = () => {
-    if (n < 20) {
+    if (n < str.length) {
         setTimeout(() => {
             n = n + 1
-            demo.innerHTML = n
+            // demo.innerHTML = n
+            // demo.innerHTML = str[n]
+            demo.innerHTML = str.substring(0, n)
+            // console.log(n)  console.log()调试大法
             step()
-        }, 500)
+        }, 150)
     }
     else { }
 }
